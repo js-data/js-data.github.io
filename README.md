@@ -2,5 +2,7 @@
 
 All your data are belong to you...
 
-[js-data](/js-data)
-[js-data-schema](/js-data-schema)
+
+## Projects
+- [js-data](http://www.js-data.io/js-data)
+- [js-data-schema](http://www.js-data.io/js-data-schema)
