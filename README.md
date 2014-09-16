@@ -1,5 +1,6 @@
-# js-data.github.io
+# js-data
 
-Own your data...
+All your data are belong to you...
 
-The website code for [js-data](http://github.com/js-data/js-data)
+[js-data](/js-data)
+[js-data-schema](/js-data-schema)
