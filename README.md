@@ -10,10 +10,6 @@ Unlike Backbone and Ember Models, JSData does not require the use of getters and
 
 Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for giving your data the respect it deserves.
 
-__Latest Release:__ [0.0.1](http://www.js-data.io/)
-
-__master:__ 0.1.0
-
 JSData is pre-alpha. The API is subject to change, though the current api is well tested.
 
 If you want to use JSData, keep a close eye on the changelog. 1.0.0 will introduce strict semver (until then, minor number is bumped for breaking changes).
@@ -26,15 +22,17 @@ If you want to use JSData, keep a close eye on the changelog. 1.0.0 will introdu
 | [js-data-schema](http://www.js-data.io/js-data-schema) | [![Bower version](https://badge.fury.io/bo/js-data-schema.png)](http://badge.fury.io/bo/js-data-schema) [![NPM version](https://badge.fury.io/js/js-data-schema.png)](http://badge.fury.io/js/js-data-schema) | [![Build Status](https://travis-ci.org/js-data/js-data-schema.png?branch=master)](http://travis-ci.org/js-data/js-data-schema) [![Coverage Status](https://coveralls.io/repos/js-data/js-data-schema/badge.png?branch=master)](http://coveralls.io/r/js-data/js-data-schema?branch=master) | [![Code Climate](https://codeclimate.com/github/js-data/js-data-schema.png)](http://codeclimate.com/github/js-data/js-data-schema) [![Dependency Status](https://gemnasium.com/js-data/js-data-schema.png)](http://gemnasium.com/js-data/js-data-schema) | 
 | [js-data-http](http://www.js-data.io/js-data-http) | [![Bower version](https://badge.fury.io/bo/js-data-http.png)](http://badge.fury.io/bo/js-data-http) [![NPM version](https://badge.fury.io/js/js-data-http.png)](http://badge.fury.io/js/js-data-http) | [![Build Status](https://travis-ci.org/js-data/js-data-http.png?branch=master)](https://travis-ci.org/js-data/js-data-http) [![Coverage Status](https://coveralls.io/repos/js-data/js-data-http/badge.png?branch=master)](https://coveralls.io/r/js-data/js-data-http?branch=master) | [![Code Climate](https://codeclimate.com/github/js-data/js-data-http.png)](https://codeclimate.com/github/js-data/js-data-http) [![Dependency Status](https://gemnasium.com/js-data/js-data-http.png)](https://gemnasium.com/js-data/js-data-http) | 
 | [js-data-localstorage](http://www.js-data.io/js-data-localstorage) | [![Bower version](https://badge.fury.io/bo/js-data-localstorage.png)](http://badge.fury.io/bo/js-data-localstorage) [![NPM version](https://badge.fury.io/js/js-data-localstorage.png)](http://badge.fury.io/js/js-data-localstorage) | [![Build Status](https://travis-ci.org/js-data/js-data-localstorage.png?branch=master)](https://travis-ci.org/js-data/js-data-localstorage) [![Coverage Status](https://coveralls.io/repos/js-data/js-data-localstorage/badge.png?branch=master)](https://coveralls.io/r/js-data/js-data-localstorage?branch=master) | [![Code Climate](https://codeclimate.com/github/js-data/js-data-localstorage.png)](https://codeclimate.com/github/js-data/js-data-localstorage) [![Dependency Status](https://gemnasium.com/js-data/js-data-localstorage.png)](https://gemnasium.com/js-data/js-data-localstorage) | 
+| [js-data-localforage](http://www.js-data.io/js-data-localforage) | [![Bower version](https://badge.fury.io/bo/js-data-localforage.png)](http://badge.fury.io/bo/js-data-localforage) [![NPM version](https://badge.fury.io/js/js-data-localforage.png)](http://badge.fury.io/js/js-data-localforage) | [![Build Status](https://travis-ci.org/js-data/js-data-localforage.png?branch=master)](https://travis-ci.org/js-data/js-data-localforage) [![Coverage Status](https://coveralls.io/repos/js-data/js-data-localforage/badge.png?branch=master)](https://coveralls.io/r/js-data/js-data-localforage?branch=master) | [![Code Climate](https://codeclimate.com/github/js-data/js-data-localforage.png)](https://codeclimate.com/github/js-data/js-data-localforage) [![Dependency Status](https://gemnasium.com/js-data/js-data-localforage.png)](https://gemnasium.com/js-data/js-data-localforage) | 
 | [js-data-firebase](http://www.js-data.io/js-data-firebase) | [![Bower version](https://badge.fury.io/bo/js-data-firebase.png)](http://badge.fury.io/bo/js-data-firebase) [![NPM version](https://badge.fury.io/js/js-data-firebase.png)](http://badge.fury.io/js/js-data-firebase) | [![Build Status](https://travis-ci.org/js-data/js-data-firebase.png?branch=master)](https://travis-ci.org/js-data/js-data-firebase) [![Coverage Status](https://coveralls.io/repos/js-data/js-data-firebase/badge.png?branch=master)](https://coveralls.io/r/js-data/js-data-firebase?branch=master) | [![Code Climate](https://codeclimate.com/github/js-data/js-data-firebase.png)](https://codeclimate.com/github/js-data/js-data-firebase) [![Dependency Status](https://gemnasium.com/js-data/js-data-firebase.png)](https://gemnasium.com/js-data/js-data-firebase) | 
 
 ## Quick Start
-`bower install --save js-data js-data-http` or `npm install --save js-data js-data-http`.
+`bower install --save js-data js-data-http js-data-localstorage` or `npm install --save js-data js-data-http js-data-localstorage`.
 
 ```js
 var store = new JSData.DS();
 
-var store.adapters.DSHttpAdapter = new DSHttpAdapter();
+store.registerAdapter('http', new DSHttpAdapter(), { default: true });
+store.registerAdapter('ls', new DSLocalStorageAdapter());
 
 var User = store.defineResource('user');
 
@@ -43,14 +41,15 @@ User.find(1).then(function (user) {
 });
 ```
 
-All your data are belong to you...
+> All your data are belong to you...
 
 ## API
 - [Overview](http://www.js-data.io)
 - [DS](https://github.com/js-data/js-data/wiki/DS)
 - [DSHttpAdapter](https://github.com/js-data/js-data/wiki/DSHttpAdapter)
 - [DSLocalStorageAdapter](https://github.com/js-data/js-data/wiki/DSLocalStorageAdapter)
-- [DSFirebaseAdapter](https://github.com/js-data/js-data/wiki/DSLocalStorageAdapter)
+- [DSFirebaseAdapter](https://github.com/js-data/js-data/wiki/DSFirebaseAdapter)
+- [DSLocalForageAdapter](https://github.com/js-data/js-data/wiki/DSLocalForageAdapter)
 - [Schemator](https://github.com/js-data/js-data/wiki/Schemator)
 
 ## Changelog
@@ -60,14 +59,14 @@ All your data are belong to you...
 [TRANSITION.md](https://github.com/js-data/js-data/blob/master/TRANSITION.md)
 
 ## Community
-- [Mailing List](https://groups.google.com/forum/?fromgroups#!forum/js-data-project) - Ask your questions!
+- [Mailing List](https://groups.io/org/groupsio/jsdata) - Ask your questions!
 - [Issues](https://github.com/js-data/js-data/issues) - Found a bug? Feature request? Submit an issue!
 - [GitHub](https://github.com/js-data/js-data) - View the source code for js-data.
 - [Contributing Guide](https://github.com/js-data/js-data/blob/master/CONTRIBUTING.md)
 
 ## Contributing
 
-First, feel free to contact me with questions. [Mailing List](https://groups.google.com/forum/?fromgroups#!forum/js-data-project). [Issues](https://github.com/js-data/js-data/issues).
+First, feel free to contact me with questions. [Mailing List](https://groups.io/org/groupsio/jsdata). [Issues](https://github.com/js-data/js-data/issues).
 
 1. Contribute to the issue that is the reason you'll be developing in the first place
 1. Fork js-data
