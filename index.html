@@ -37,10 +37,6 @@
 
 <p>Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for giving your data the respect it deserves.</p>
 
-<p><strong>Latest Release:</strong> <a href="http://www.js-data.io/">0.0.1</a></p>
-
-<p><strong>master:</strong> 0.1.0</p>
-
 <p>JSData is pre-alpha. The API is subject to change, though the current api is well tested.</p>
 
 <p>If you want to use JSData, keep a close eye on the changelog. 1.0.0 will introduce strict semver (until then, minor number is bumped for breaking changes).</p>
@@ -105,6 +101,18 @@
 </td>
 </tr>
 <tr>
+<td><a href="http://www.js-data.io/js-data-localforage">js-data-localforage</a></td>
+<td>
+<a href="http://badge.fury.io/bo/js-data-localforage"><img src="https://badge.fury.io/bo/js-data-localforage.png" alt="Bower version"></a> <a href="http://badge.fury.io/js/js-data-localforage"><img src="https://badge.fury.io/js/js-data-localforage.png" alt="NPM version"></a>
+</td>
+<td>
+<a href="https://travis-ci.org/js-data/js-data-localforage"><img src="https://travis-ci.org/js-data/js-data-localforage.png?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/js-data/js-data-localforage?branch=master"><img src="https://coveralls.io/repos/js-data/js-data-localforage/badge.png?branch=master" alt="Coverage Status"></a>
+</td>
+<td>
+<a href="https://codeclimate.com/github/js-data/js-data-localforage"><img src="https://codeclimate.com/github/js-data/js-data-localforage.png" alt="Code Climate"></a> <a href="https://gemnasium.com/js-data/js-data-localforage"><img src="https://gemnasium.com/js-data/js-data-localforage.png" alt="Dependency Status"></a>
+</td>
+</tr>
+<tr>
 <td><a href="http://www.js-data.io/js-data-firebase">js-data-firebase</a></td>
 <td>
 <a href="http://badge.fury.io/bo/js-data-firebase"><img src="https://badge.fury.io/bo/js-data-firebase.png" alt="Bower version"></a> <a href="http://badge.fury.io/js/js-data-firebase"><img src="https://badge.fury.io/js/js-data-firebase.png" alt="NPM version"></a>
@@ -120,11 +128,12 @@
 </table><h2>
 <a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick Start</h2>
 
-<p><code>bower install --save js-data js-data-http</code> or <code>npm install --save js-data js-data-http</code>.</p>
+<p><code>bower install --save js-data js-data-http js-data-localstorage</code> or <code>npm install --save js-data js-data-http js-data-localstorage</code>.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JSData</span><span class="p">.</span><span class="nx">DS</span><span class="p">();</span>
 
-<span class="kd">var</span> <span class="nx">store</span><span class="p">.</span><span class="nx">adapters</span><span class="p">.</span><span class="nx">DSHttpAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DSHttpAdapter</span><span class="p">();</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">registerAdapter</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">DSHttpAdapter</span><span class="p">(),</span> <span class="p">{</span> <span class="k">default</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">registerAdapter</span><span class="p">(</span><span class="s1">'ls'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">DSLocalStorageAdapter</span><span class="p">());</span>
 
 <span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">defineResource</span><span class="p">(</span><span class="s1">'user'</span><span class="p">);</span>
 
@@ -133,7 +142,9 @@
 <span class="p">});</span>
 </pre></div>
 
+<blockquote>
 <p>All your data are belong to you...</p>
+</blockquote>
 
 <h2>
 <a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
@@ -143,7 +154,8 @@
 <li><a href="https://github.com/js-data/js-data/wiki/DS">DS</a></li>
 <li><a href="https://github.com/js-data/js-data/wiki/DSHttpAdapter">DSHttpAdapter</a></li>
 <li><a href="https://github.com/js-data/js-data/wiki/DSLocalStorageAdapter">DSLocalStorageAdapter</a></li>
-<li><a href="https://github.com/js-data/js-data/wiki/DSLocalStorageAdapter">DSFirebaseAdapter</a></li>
+<li><a href="https://github.com/js-data/js-data/wiki/DSFirebaseAdapter">DSFirebaseAdapter</a></li>
+<li><a href="https://github.com/js-data/js-data/wiki/DSLocalForageAdapter">DSLocalForageAdapter</a></li>
 <li><a href="https://github.com/js-data/js-data/wiki/Schemator">Schemator</a></li>
 </ul><h2>
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
@@ -160,7 +172,7 @@
 
 <ul>
 <li>
-<a href="https://groups.google.com/forum/?fromgroups#!forum/js-data-project">Mailing List</a> - Ask your questions!</li>
+<a href="https://groups.io/org/groupsio/jsdata">Mailing List</a> - Ask your questions!</li>
 <li>
 <a href="https://github.com/js-data/js-data/issues">Issues</a> - Found a bug? Feature request? Submit an issue!</li>
 <li>
@@ -169,7 +181,7 @@
 </ul><h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
-<p>First, feel free to contact me with questions. <a href="https://groups.google.com/forum/?fromgroups#!forum/js-data-project">Mailing List</a>. <a href="https://github.com/js-data/js-data/issues">Issues</a>.</p>
+<p>First, feel free to contact me with questions. <a href="https://groups.io/org/groupsio/jsdata">Mailing List</a>. <a href="https://github.com/js-data/js-data/issues">Issues</a>.</p>
 
 <ol>
 <li>Contribute to the issue that is the reason you'll be developing in the first place</li>
