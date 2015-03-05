@@ -1,28 +1,26 @@
 <img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="64" height="64" />
 
-## js-data  [![Stories in Backlog](https://badge.waffle.io/js-data/js-data.svg?label=backlog&title=Backlog)](http://waffle.io/js-data/js-data) [![Stories in Ready](https://badge.waffle.io/js-data/js-data.svg?label=ready&title=Ready)](http://waffle.io/js-data/js-data) [![Stories in progress](https://badge.waffle.io/js-data/js-data.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/js-data/js-data)
+## JSData [![bower version](https://img.shields.io/bower/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![npm version](https://img.shields.io/npm/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![Circle CI](https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat-square)](https://circleci.com/gh/js-data/js-data/tree/master) [![npm downloads](https://img.shields.io/npm/dm/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/js-data/js-data/blob/master/LICENSE)
 
-Inspired by [Ember Data](https://github.com/emberjs/data), js-data is the model layer you've been craving. It consists of a convenient framework-agnostic, in-memory cache for managing your data, which users adapters to communicate with various persistence layers.
+Inspired by [Ember Data](https://github.com/emberjs/data), js-data is the model layer you've been craving. It consists of a convenient framework-agnostic, in-memory cache for managing your data, which uses adapters to communicate with various persistence layers.
 
-You can use the [http adapter](http://www.js-data.io/docs/dshttpadapter), which is perfect for communicating with your RESTful backend. You could also use the [localStorage adapter](http://www.js-data.io/docs/dslocalstorageadapter). More adapters are coming, and you're free to implement your own. View available adapters [here](http://www.js-data.io/docs/adapters).
+You can use the [http adapter](http://www.js-data.io/docs/dshttpadapter), which is perfect for communicating with your RESTful backend. You could also use the [localStorage adapter](http://www.js-data.io/docs/dslocalstorageadapter). On the server you could hook up to the [SQL adapter (Postgres/MySQL/MariaDB/SQLite3)](http://www.js-data.io/docs/dssqladapter) and add in the [Redis adapter](http://www.js-data.io/docs/dsredisadapter) as a caching layer for your read endpoints. More adapters are coming, and you're free to implement your own. View [available adapters](http://www.js-data.io/docs/working-with-adapters).
 
-Unlike Backbone and Ember Models, js-data does not require the use of getters and setters, and doesn't wrap your data with custom classes if you don't want it to. js-data's internal dirty-checking (via [observe-js](https://github.com/Polymer/observe-js) or `Object.observe` in supporting browsers) allows for powerful use cases and an easy avenue for implementing your own [3-way data-binding](https://www.firebase.com/blog/2013-10-04-firebase-angular-data-binding.html).
+Unlike Backbone and Ember Models, JSData does not require the use of getters and setters, and doesn't wrap your data with custom classes if you don't want it to. JSData's internal dirty-checking (via [observe-js](https://github.com/Polymer/observe-js) or `Object.observe` in supporting browsers) allows for powerful use cases and an easy avenue for implementing your own [3-way data-binding](https://www.firebase.com/blog/2013-10-04-firebase-angular-data-binding.html).
 
-Supporting relations, computed properties, model lifecycle control and a slew of other features, js-data is the tool for giving your data the respect it deserves.
+Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for giving your data the respect it deserves.
 
-__Latest Release:__ [See Releases](https://github.com/js-data/js-data/releases/)
+__Latest Release:__ [![Latest Release](https://img.shields.io/github/release/js-data/js-data.svg?style=flat-square)](https://github.com/js-data/js-data/releases)
 
-js-data is pre-release. The API is subject to change, though the current api is well tested.
+__Status:__
 
-If you want to use js-data, keep a close eye on the changelog. 1.0.0 will introduce strict semver (until then, minor number is bumped for breaking changes).
+[![Dependency Status](https://img.shields.io/gemnasium/js-data/js-data.svg?style=flat-square)](https://gemnasium.com/js-data/js-data) [![Coverage Status](https://img.shields.io/coveralls/js-data/js-data/master.svg?style=flat-square)](https://coveralls.io/r/js-data/js-data?branch=master) [![Codacity](https://img.shields.io/codacy/88b55f71c45a47838d24ed1e5fd2476c.svg?style=flat-square)](https://www.codacy.com/public/jasondobry/js-data/dashboard) 
 
-## Supported Platforms
+__Supported Platforms:__
 
-Browsers: Chrome, Firefox, IE 8+, Safari, Opera, iOS Safari 7.1+, Android Browser 2.3+
+[![node version](https://img.shields.io/badge/Node-0.10%2B-green.svg?style=flat-square)](https://github.com/js-data/js-data) [![browsers](https://img.shields.io/badge/Browser-Chrome%2CFirefox%2CSafari%2COpera%2CIE%209%2B%2CiOS%20Safari%207.1%2B%2CAndroid%20Browser%202.3%2B-green.svg?style=flat-square)](https://github.com/js-data/js-data)
 
-Node: 0.10+ (at least)
-
-## Quick Start
+### Quick Start
 `bower install --save js-data js-data-http` or `npm install --save js-data js-data-http`.
 
 Load `js-data-http.js` after `js-data.js`.
@@ -35,17 +33,72 @@ store.registerAdapter('http', new DSHttpAdapter(), { default: true });
 
 // simplest model definition
 var User = store.defineResource('user');
+var Comment = store.defineResource('comment');
 
-User.find(1).then(function (user) {
-  user; // { id: 1, name: 'John' }
-});
+var user;
+
+// Example CRUD operations with default configuration
+// See http://www.js-data.io/docs/dsfind
+User.find(1)
+  .then(function (_user) {
+    _user; // { id: 1, name: 'John' }
+
+    // See http://www.js-data.io/docs/dsis
+    User.is(_user); // true
+    Comment.is(_user); // false
+
+    // The user is in the store now
+    // See http://www.js-data.io/docs/dsget
+    User.get(_user.id); // { id: 1, name: 'John' }
+
+    user = _user;
+
+    // No need for another GET request, will resolve immediately
+    // See http://www.js-data.io/docs/dsfind
+    return User.find(1);
+  })
+  .then(function (_user) {
+    user === _user; // true
+
+    // PUT /user/1 {name:"Johnny"}
+    // See http://www.js-data.io/docs/dsupdate
+    return User.update(user.id, { name: 'Johnny' });
+  })
+  .then(function (_user) {
+    // identity mapping at play
+    user === _user; // true
+    user === User.get(_user.id); // true
+
+    user; // { id: 1, name: 'Johnny' }
+
+    user.name = 'Billy';
+
+    // PUT /user/1 {id:1,name:"Billy"}
+    // See http://www.js-data.io/docs/dssave
+    return User.save(1);
+  })
+  .then(function (_user) {
+    // identity mapping at play
+    user === _user; // true
+    user === User.get(_user.id); // true
+
+    user; // { id: 1, name: 'Johnny' }
+
+    // DELETE /user/1
+    // See http://www.js-data.io/docs/dsdestroy
+    return User.destroy(1);
+  })
+  .then(function () {
+    // The user has also been removed from the in-memory store
+    User.get(1); // undefined
+  });
 ```
 
 All your data are belong to you...
 
-## Guides
+### Guides
 - [Getting Started with js-data](http://www.js-data.io/docs/home)
-- [Resources](http://www.js-data.io/docs/resources)
+- [Resources/Models](http://www.js-data.io/docs/resources)
 - [Working with the Data Store](http://www.js-data.io/docs/working-with-the-data-store)
 - [Adapters](http://www.js-data.io/docs/working-with-adapters)
 - [Model Lifecycle](http://www.js-data.io/docs/model-lifecycle)
@@ -53,33 +106,36 @@ All your data are belong to you...
 - [Computed Properties](http://www.js-data.io/docs/computed-properties)
 - [Relations](http://www.js-data.io/docs/relations)
 - [Schemata & Validation](http://www.js-data.io/docs/schemata--validation)
+- [JSData on the server](http://www.js-data.io/docs/jsdata-on-the-server)
+- [Angular + JSData](http://www.js-data.io/docs/js-data-angular)
 - [FAQ](http://www.js-data.io/docs/faq)
 
-## API Documentation
+See an issue with or have a suggestion for the documentation? You can suggest edits right on the documentation pages! (There's a link at the top right of each page.)
+
+### API Documentation
 - [DS](http://www.js-data.io/docs/ds)
-- [Schemator](http://www.js-data.io/docs/js-data-schema)
-- [DSHttpAdapter](http://www.js-data.io/docs/dshttpadapter)
-- [DSLocalStorageAdapter](http://www.js-data.io/docs/dslocalstorageadapter)
-- [DSLocalForageAdapter](http://www.js-data.io/docs/dslocalforageadapter)
+- [js-data-schema](http://www.js-data.io/docs/js-data-schema)
 - [DSFirebaseAdapter](http://www.js-data.io/docs/dsfirebaseadapter)
+- [DSHttpAdapter](http://www.js-data.io/docs/dshttpadapter)
+- [DSLocalForageAdapter](http://www.js-data.io/docs/dslocalforageadapter)
+- [DSLocalStorageAdapter](http://www.js-data.io/docs/dslocalstorageadapter)
+- [DSMongoDBAdapter](http://www.js-data.io/docs/dsmongodbadapter)
 - [DSRedisAdapter](http://www.js-data.io/docs/dsredisadapter)
 - [DSRethinkDBAdapter](http://www.js-data.io/docs/dsrethinkdbadapter)
+- [DSSqlAdapter](http://www.js-data.io/docs/dssqladapter)
 
-## Changelog
+### Changelog
 [CHANGELOG.md](https://github.com/js-data/js-data/blob/master/CHANGELOG.md)
 
-## Version Migration
-[TRANSITION.md](https://github.com/js-data/js-data/blob/master/TRANSITION.md)
-
-## Community
+### Community
 - [Mailing List](https://groups.io/org/groupsio/jsdata) - Ask your questions!
 - [Issues](https://github.com/js-data/js-data/issues) - Found a bug? Feature request? Submit an issue!
-- [GitHub](https://github.com/js-data/js-data) - View the source code for js-data.
+- [GitHub](https://github.com/js-data/js-data) - View the source code for JSData.
 - [Contributing Guide](https://github.com/js-data/js-data/blob/master/CONTRIBUTING.md)
 
-## Contributing
+### Contributing
 
-First, feel free to contact me with questions. [Mailing List](https://groups.io/org/groupsio/jsdata). [Issues](https://github.com/js-data/js-data/issues).
+First, feel free to contact me with questions. [Mailing List](https://groups.io/org/groupsio/jsdata).
 
 1. Contribute to the issue that is the reason you'll be developing in the first place
 1. Fork js-data
@@ -91,11 +147,11 @@ First, feel free to contact me with questions. [Mailing List](https://groups.io/
 1. Write your code, including relevant documentation and tests
 1. Submit a PR and we'll review
 
-## License
+### License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Jason Dobry
+Copyright (c) 2014-2015 Jason Dobry
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
