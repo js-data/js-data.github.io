@@ -1,20 +1,24 @@
 <img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="64" height="64" />
 
-## JSData [![bower version](https://img.shields.io/bower/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![npm version](https://img.shields.io/npm/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![Circle CI](https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat-square)](https://circleci.com/gh/js-data/js-data/tree/master) [![npm downloads](https://img.shields.io/npm/dm/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/js-data/js-data/blob/master/LICENSE)
+## JSData [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/js-data/js-data?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![bower version](https://img.shields.io/bower/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![npm version](https://img.shields.io/npm/v/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![Circle CI](https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat-square)](https://circleci.com/gh/js-data/js-data/tree/master) [![npm downloads](https://img.shields.io/npm/dm/js-data.svg?style=flat-square)](https://www.npmjs.org/package/js-data) [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/js-data/js-data/blob/master/LICENSE)
 
 Inspired by [Ember Data](https://github.com/emberjs/data), js-data is the model layer you've been craving. It consists of a convenient framework-agnostic, in-memory cache for managing your data, which uses adapters to communicate with various persistence layers.
 
 You can use the [http adapter](http://www.js-data.io/docs/dshttpadapter), which is perfect for communicating with your RESTful backend. You could also use the [localStorage adapter](http://www.js-data.io/docs/dslocalstorageadapter). On the server you could hook up to the [SQL adapter (Postgres/MySQL/MariaDB/SQLite3)](http://www.js-data.io/docs/dssqladapter) and add in the [Redis adapter](http://www.js-data.io/docs/dsredisadapter) as a caching layer for your read endpoints. More adapters are coming, and you're free to implement your own. View [available adapters](http://www.js-data.io/docs/working-with-adapters).
 
-Unlike Backbone and Ember Models, JSData does not require the use of getters and setters, and doesn't wrap your data with custom classes if you don't want it to. JSData's internal dirty-checking (via [observe-js](https://github.com/Polymer/observe-js) or `Object.observe` in supporting browsers) allows for powerful use cases and an easy avenue for implementing your own [3-way data-binding](https://www.firebase.com/blog/2013-10-04-firebase-angular-data-binding.html).
+Unlike Backbone and Ember Models, JSData does not require the use of getters and setters, and doesn't wrap your data with custom classes if you don't want it to. JSData's internal change detection (via [observe-js](https://github.com/Polymer/observe-js) or `Object.observe` in supporting browsers) allows for powerful use cases and an easy avenue for implementing your own [3-way data-binding](https://www.firebase.com/blog/2013-10-04-firebase-angular-data-binding.html).
 
-Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for giving your data the respect it deserves.
+Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for [giving your data the respect it deserves](http://confreaks.tv/videos/mwjs2015-give-your-data-the-respect-it-deserves).
 
-__Latest Release:__ [![Latest Release](https://img.shields.io/github/release/js-data/js-data.svg?style=flat-square)](https://github.com/js-data/js-data/releases)
+It's also written in ES6. Contributions ftw!
+
+Support is handled via the [Mailing List](https://groups.io/org/groupsio/jsdata).
+
+[![MtnWestJS Conf 2015 Presentation](http://img.youtube.com/vi/8wxnnJA9FKw/0.jpg)](https://www.youtube.com/watch?v=8wxnnJA9FKw)
 
 __Status:__
 
-[![Dependency Status](https://img.shields.io/gemnasium/js-data/js-data.svg?style=flat-square)](https://gemnasium.com/js-data/js-data) [![Coverage Status](https://img.shields.io/coveralls/js-data/js-data/master.svg?style=flat-square)](https://coveralls.io/r/js-data/js-data?branch=master) [![Codacity](https://img.shields.io/codacy/88b55f71c45a47838d24ed1e5fd2476c.svg?style=flat-square)](https://www.codacy.com/public/jasondobry/js-data/dashboard) 
+[![Latest Release](https://img.shields.io/github/release/js-data/js-data.svg?style=flat-square)](https://github.com/js-data/js-data/releases) [![Dependency Status](https://img.shields.io/gemnasium/js-data/js-data.svg?style=flat-square)](https://gemnasium.com/js-data/js-data) [![Coverage Status](https://img.shields.io/coveralls/js-data/js-data/master.svg?style=flat-square)](https://coveralls.io/r/js-data/js-data?branch=master) [![Codacity](https://img.shields.io/codacy/88b55f71c45a47838d24ed1e5fd2476c.svg?style=flat-square)](https://www.codacy.com/public/jasondobry/js-data/dashboard)
 
 __Supported Platforms:__
 
@@ -23,9 +27,11 @@ __Supported Platforms:__
 ### Quick Start
 `bower install --save js-data js-data-http` or `npm install --save js-data js-data-http`.
 
-Load `js-data-http.js` after `js-data.js`.
+Load `js-data-http.js` after `js-data.js`. See [installation instructions](http://www.js-data.io/docs#use-with-webpack) for making js-data part of your r.js/browserify/webpack build.
 
 ```js
+// you can also require "js-data" if you're using AMD/CommonJS
+// e.g. var JSData = require('js-data'); var DSHttpAdapter = require('js-data-http');
 var store = new JSData.DS();
 
 // register and use http by default for async operations
@@ -135,17 +141,27 @@ See an issue with or have a suggestion for the documentation? You can suggest ed
 
 ### Contributing
 
-First, feel free to contact me with questions. [Mailing List](https://groups.io/org/groupsio/jsdata).
+First, support is handled via the [Mailing List](https://groups.io/org/groupsio/jsdata). Ask your questions there.
+
+When submitting issues on GitHub, please include as much detail as possible to make debugging quick and easy.
+
+- good - Your versions of Angular, JSData, etc, relevant console logs/error, code examples that revealed the issue
+- better - A [plnkr](http://plnkr.co/), [fiddle](http://jsfiddle.net/), or [bin](http://jsbin.com/?html,output) that demonstrates the issue
+- best - A Pull Request that fixes the issue, including test coverage for the issue and the fix
+
+[Github Issues](https://github.com/js-data/js-data/issues).
+
+#### Pull Requests
 
 1. Contribute to the issue that is the reason you'll be developing in the first place
 1. Fork js-data
 1. `git clone https://github.com/<you>/js-data.git`
 1. `cd js-data; npm install; bower install;`
 1. `grunt go` (builds and starts a watch)
-1. (in another terminal) `grunt karma:dev` (runs the Karma tests)
-1. (in another terminal) `grunt w` (runs the NodeJS tests)
+1. (in another terminal) `grunt karma:dev` (runs the tests)
 1. Write your code, including relevant documentation and tests
 1. Submit a PR and we'll review
+
 
 ### License
 
