@@ -1,29 +1,22 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>js-data.io by js-data</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>js-data.io</h1>
-        <p>js-data</p>
+    <section class="page-header">
+      <h1 class="project-name">js-data.io</h1>
+      <h2 class="project-tagline">js-data</h2>
+    </section>
 
-
-        <p class="view"><a href="https://github.com/js-data">View My GitHub Profile</a></p>
-
-      </header>
-      <section>
-        <p><img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="64" height="64"></p>
+    <section class="main-content">
+      <p><img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="64" height="64"></p>
 
 <h2>
 <a id="jsdata-----" class="anchor" href="#jsdata-----" aria-hidden="true"><span class="octicon octicon-link"></span></a>JSData <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/bower/v/js-data.svg?style=flat-square" alt="bower version"></a> <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/v/js-data.svg?style=flat-square" alt="npm version"></a> <a href="https://circleci.com/gh/js-data/js-data/tree/master"><img src="https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat-square" alt="Circle CI"></a> <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/dm/js-data.svg?style=flat-square" alt="npm downloads"></a> <a href="https://github.com/js-data/js-data/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
@@ -54,21 +47,21 @@
 
 <p>Load <code>js-data-http.js</code> after <code>js-data.js</code>.</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> store <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">JSData.DS</span>();
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> store <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">JSData.DS</span>();
 
 <span class="pl-c">// register and use http by default for async operations</span>
-store.registerAdapter(<span class="pl-s1"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>, <span class="pl-k">new</span> <span class="pl-en">DSHttpAdapter</span>(), { <span class="pl-k">default</span><span class="pl-k">:</span> <span class="pl-c1">true</span> });
+store.registerAdapter(<span class="pl-s"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>, <span class="pl-k">new</span> <span class="pl-en">DSHttpAdapter</span>(), { <span class="pl-k">default</span><span class="pl-k">:</span> <span class="pl-c1">true</span> });
 
 <span class="pl-c">// simplest model definition</span>
-<span class="pl-s">var</span> User <span class="pl-k">=</span> store.defineResource(<span class="pl-s1"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span>);
-<span class="pl-s">var</span> Comment <span class="pl-k">=</span> store.defineResource(<span class="pl-s1"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> User <span class="pl-k">=</span> store.defineResource(<span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> Comment <span class="pl-k">=</span> store.defineResource(<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>);
 
-<span class="pl-s">var</span> user;
+<span class="pl-k">var</span> user;
 
 <span class="pl-c">// Example CRUD operations with default configuration</span>
 <span class="pl-c">// See http://www.js-data.io/docs/dsfind</span>
-User.<span class="pl-s3">find</span>(<span class="pl-c1">1</span>)
-  .then(<span class="pl-st">function</span> (<span class="pl-vpf">_user</span>) {
+User.<span class="pl-c1">find</span>(<span class="pl-c1">1</span>)
+  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
     _user; <span class="pl-c">// { id: 1, name: 'John' }</span>
 
     <span class="pl-c">// See http://www.js-data.io/docs/dsis</span>
@@ -77,38 +70,38 @@ User.<span class="pl-s3">find</span>(<span class="pl-c1">1</span>)
 
     <span class="pl-c">// The user is in the store now</span>
     <span class="pl-c">// See http://www.js-data.io/docs/dsget</span>
-    User.get(_user.<span class="pl-sc">id</span>); <span class="pl-c">// { id: 1, name: 'John' }</span>
+    User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// { id: 1, name: 'John' }</span>
 
     user <span class="pl-k">=</span> _user;
 
     <span class="pl-c">// No need for another GET request, will resolve immediately</span>
     <span class="pl-c">// See http://www.js-data.io/docs/dsfind</span>
-    <span class="pl-k">return</span> User.<span class="pl-s3">find</span>(<span class="pl-c1">1</span>);
+    <span class="pl-k">return</span> User.<span class="pl-c1">find</span>(<span class="pl-c1">1</span>);
   })
-  .then(<span class="pl-st">function</span> (<span class="pl-vpf">_user</span>) {
+  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
     user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
 
     <span class="pl-c">// PUT /user/1 {name:"Johnny"}</span>
     <span class="pl-c">// See http://www.js-data.io/docs/dsupdate</span>
-    <span class="pl-k">return</span> User.update(user.<span class="pl-sc">id</span>, { name<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Johnny<span class="pl-pds">'</span></span> });
+    <span class="pl-k">return</span> User.update(user.<span class="pl-c1">id</span>, { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Johnny<span class="pl-pds">'</span></span> });
   })
-  .then(<span class="pl-st">function</span> (<span class="pl-vpf">_user</span>) {
+  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
     <span class="pl-c">// identity mapping at play</span>
     user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
-    user <span class="pl-k">===</span> User.get(_user.<span class="pl-sc">id</span>); <span class="pl-c">// true</span>
+    user <span class="pl-k">===</span> User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// true</span>
 
     user; <span class="pl-c">// { id: 1, name: 'Johnny' }</span>
 
-    user.<span class="pl-sc">name</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>Billy<span class="pl-pds">'</span></span>;
+    user.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Billy<span class="pl-pds">'</span></span>;
 
     <span class="pl-c">// PUT /user/1 {id:1,name:"Billy"}</span>
     <span class="pl-c">// See http://www.js-data.io/docs/dssave</span>
     <span class="pl-k">return</span> User.save(<span class="pl-c1">1</span>);
   })
-  .then(<span class="pl-st">function</span> (<span class="pl-vpf">_user</span>) {
+  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
     <span class="pl-c">// identity mapping at play</span>
     user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
-    user <span class="pl-k">===</span> User.get(_user.<span class="pl-sc">id</span>); <span class="pl-c">// true</span>
+    user <span class="pl-k">===</span> User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// true</span>
 
     user; <span class="pl-c">// { id: 1, name: 'Johnny' }</span>
 
@@ -116,7 +109,7 @@ User.<span class="pl-s3">find</span>(<span class="pl-c1">1</span>)
     <span class="pl-c">// See http://www.js-data.io/docs/dsdestroy</span>
     <span class="pl-k">return</span> User.destroy(<span class="pl-c1">1</span>);
   })
-  .then(<span class="pl-st">function</span> () {
+  .then(<span class="pl-k">function</span> () {
     <span class="pl-c">// The user has also been removed from the in-memory store</span>
     User.get(<span class="pl-c1">1</span>); <span class="pl-c">// undefined</span>
   });</pre></div>
@@ -219,12 +212,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+    </section>
+
+  
   </body>
 </html>
+
