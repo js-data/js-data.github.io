@@ -1,217 +1,87 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>js-data.io by js-data</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JSData by js-data</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">js-data.io</h1>
-      <h2 class="project-tagline">js-data</h2>
-    </section>
+    <div class="wrapper">
+      <header>
+        <h1>JSData</h1>
+        <p>API Reference Docs</p>
 
-    <section class="main-content">
-      <p><img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="64" height="64"></p>
+
+        <p class="view"><a href="https://github.com/js-data">View My GitHub Profile</a></p>
+
+      </header>
+      <section>
+        <p><img src="https://raw.githubusercontent.com/js-data/js-data/master/js-data.png" alt="js-data logo" title="js-data" align="right" width="96" height="96"></p>
+
+<h1>
+<a id="jsdata" class="anchor" href="#jsdata" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.js-data.io/">JSData</a>
+</h1>
+
+<p><a href="http://slack.js-data.io"><img src="http://slack.js-data.io/badge.svg" alt="Slack Status"></a>
+<a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/v/js-data.svg?style=flat" alt="npm version"></a>
+<a href="https://circleci.com/gh/js-data/js-data/tree/master"><img src="https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat" alt="Circle CI"></a>
+<a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/dm/js-data.svg?style=flat" alt="npm downloads"></a>
+<a href="https://coveralls.io/github/js-data/js-data?branch=master"><img src="https://img.shields.io/coveralls/js-data/js-data/master.svg?style=flat" alt="Coverage Status"></a>
+<a href="https://www.codacy.com/app/jasondobry/js-data/dashboard"><img src="https://img.shields.io/codacy/88b55f71c45a47838d24ed1e5fd2476c.svg" alt="Codacy"></a></p>
+
+<p>JSData is a framework-agnostic, datastore-agnostic ORM/ODM for Node.js and the
+Browser.</p>
+
+<p>Adapters allow JSData to connect to various data sources such as Firebase, MySql,
+RethinkDB, MongoDB, localStorage, Redis, a REST API, etc. With JSData you can
+re-use your Models between environments, keep your data layer intact when
+transitioning between app frameworks, and work with a unified data API on the
+server and the client. JSData employs conventions for rapid development, but
+allows for endless customization in order to meet your particular needs. Think
+of it as the "Twitter Bootstrap" of JavaScript data layers.</p>
+
+<p>To get started, check out <a href="http://www.js-data.io">js-data.io</a>!</p>
+
+<h1>
+<a id="api-reference-docs" class="anchor" href="#api-reference-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Reference Docs</h1>
 
 <h2>
-<a id="jsdata------" class="anchor" href="#jsdata------" aria-hidden="true"><span class="octicon octicon-link"></span></a>JSData <a href="https://gitter.im/js-data/js-data?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a> <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/bower/v/js-data.svg?style=flat-square" alt="bower version"></a> <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/v/js-data.svg?style=flat-square" alt="npm version"></a> <a href="https://circleci.com/gh/js-data/js-data/tree/master"><img src="https://img.shields.io/circleci/project/js-data/js-data/master.svg?style=flat-square" alt="Circle CI"></a> <a href="https://www.npmjs.org/package/js-data"><img src="https://img.shields.io/npm/dm/js-data.svg?style=flat-square" alt="npm downloads"></a> <a href="https://github.com/js-data/js-data/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
-</h2>
-
-<p>Inspired by <a href="https://github.com/emberjs/data">Ember Data</a>, js-data is the model layer you've been craving. It consists of a convenient framework-agnostic, in-memory cache for managing your data, which uses adapters to communicate with various persistence layers.</p>
-
-<p>You can use the <a href="http://www.js-data.io/docs/dshttpadapter">http adapter</a>, which is perfect for communicating with your RESTful backend. You could also use the <a href="http://www.js-data.io/docs/dslocalstorageadapter">localStorage adapter</a>. On the server you could hook up to the <a href="http://www.js-data.io/docs/dssqladapter">SQL adapter (Postgres/MySQL/MariaDB/SQLite3)</a> and add in the <a href="http://www.js-data.io/docs/dsredisadapter">Redis adapter</a> as a caching layer for your read endpoints. More adapters are coming, and you're free to implement your own. View <a href="http://www.js-data.io/docs/working-with-adapters">available adapters</a>.</p>
-
-<p>Unlike Backbone and Ember Models, JSData does not require the use of getters and setters, and doesn't wrap your data with custom classes if you don't want it to. JSData's internal change detection (via <a href="https://github.com/Polymer/observe-js">observe-js</a> or <code>Object.observe</code> in supporting browsers) allows for powerful use cases and an easy avenue for implementing your own <a href="https://www.firebase.com/blog/2013-10-04-firebase-angular-data-binding.html">3-way data-binding</a>.</p>
-
-<p>Supporting relations, computed properties, model lifecycle control and a slew of other features, JSData is the tool for <a href="http://confreaks.tv/videos/mwjs2015-give-your-data-the-respect-it-deserves">giving your data the respect it deserves</a>.</p>
-
-<p>It's also written in ES6. Contributions ftw!</p>
-
-<p>Support is handled via the <a href="https://groups.io/org/groupsio/jsdata">Mailing List</a>.</p>
-
-<p><a href="https://www.youtube.com/watch?v=8wxnnJA9FKw"><img src="http://img.youtube.com/vi/8wxnnJA9FKw/0.jpg" alt="MtnWestJS Conf 2015 Presentation"></a></p>
-
-<p><strong>Status:</strong></p>
-
-<p><a href="https://github.com/js-data/js-data/releases"><img src="https://img.shields.io/github/release/js-data/js-data.svg?style=flat-square" alt="Latest Release"></a> <a href="https://gemnasium.com/js-data/js-data"><img src="https://img.shields.io/gemnasium/js-data/js-data.svg?style=flat-square" alt="Dependency Status"></a> <a href="https://coveralls.io/r/js-data/js-data?branch=master"><img src="https://img.shields.io/coveralls/js-data/js-data/master.svg?style=flat-square" alt="Coverage Status"></a> <a href="https://www.codacy.com/public/jasondobry/js-data/dashboard"><img src="https://img.shields.io/codacy/88b55f71c45a47838d24ed1e5fd2476c.svg?style=flat-square" alt="Codacity"></a></p>
-
-<p><strong>Supported Platforms:</strong></p>
-
-<p><a href="https://github.com/js-data/js-data"><img src="https://img.shields.io/badge/Node-0.10%2B-green.svg?style=flat-square" alt="node version"></a> <a href="https://github.com/js-data/js-data"><img src="https://img.shields.io/badge/Browser-Chrome%2CFirefox%2CSafari%2COpera%2CIE%209%2B%2CiOS%20Safari%207.1%2B%2CAndroid%20Browser%202.3%2B-green.svg?style=flat-square" alt="browsers"></a></p>
-
-<h3>
-<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h3>
-
-<p><code>bower install --save js-data js-data-http</code> or <code>npm install --save js-data js-data-http</code>.</p>
-
-<p>Load <code>js-data-http.js</code> after <code>js-data.js</code>. See <a href="http://www.js-data.io/docs#use-with-webpack">installation instructions</a> for making js-data part of your r.js/browserify/webpack build.</p>
-
-<div class="highlight highlight-js"><pre><span class="pl-c">// you can also require "js-data" if you're using AMD/CommonJS</span>
-<span class="pl-c">// e.g. var JSData = require('js-data'); var DSHttpAdapter = require('js-data-http');</span>
-<span class="pl-k">var</span> store <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">JSData.DS</span>();
-
-<span class="pl-c">// register and use http by default for async operations</span>
-store.registerAdapter(<span class="pl-s"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>, <span class="pl-k">new</span> <span class="pl-en">DSHttpAdapter</span>(), { <span class="pl-k">default</span><span class="pl-k">:</span> <span class="pl-c1">true</span> });
-
-<span class="pl-c">// simplest model definition</span>
-<span class="pl-k">var</span> User <span class="pl-k">=</span> store.defineResource(<span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> Comment <span class="pl-k">=</span> store.defineResource(<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>);
-
-<span class="pl-k">var</span> user;
-
-<span class="pl-c">// Example CRUD operations with default configuration</span>
-<span class="pl-c">// See http://www.js-data.io/docs/dsfind</span>
-User.<span class="pl-c1">find</span>(<span class="pl-c1">1</span>)
-  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
-    _user; <span class="pl-c">// { id: 1, name: 'John' }</span>
-
-    <span class="pl-c">// See http://www.js-data.io/docs/dsis</span>
-    User.is(_user); <span class="pl-c">// true</span>
-    Comment.is(_user); <span class="pl-c">// false</span>
-
-    <span class="pl-c">// The user is in the store now</span>
-    <span class="pl-c">// See http://www.js-data.io/docs/dsget</span>
-    User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// { id: 1, name: 'John' }</span>
-
-    user <span class="pl-k">=</span> _user;
-
-    <span class="pl-c">// No need for another GET request, will resolve immediately</span>
-    <span class="pl-c">// See http://www.js-data.io/docs/dsfind</span>
-    <span class="pl-k">return</span> User.<span class="pl-c1">find</span>(<span class="pl-c1">1</span>);
-  })
-  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
-    user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
-
-    <span class="pl-c">// PUT /user/1 {name:"Johnny"}</span>
-    <span class="pl-c">// See http://www.js-data.io/docs/dsupdate</span>
-    <span class="pl-k">return</span> User.update(user.<span class="pl-c1">id</span>, { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Johnny<span class="pl-pds">'</span></span> });
-  })
-  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
-    <span class="pl-c">// identity mapping at play</span>
-    user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
-    user <span class="pl-k">===</span> User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// true</span>
-
-    user; <span class="pl-c">// { id: 1, name: 'Johnny' }</span>
-
-    user.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Billy<span class="pl-pds">'</span></span>;
-
-    <span class="pl-c">// PUT /user/1 {id:1,name:"Billy"}</span>
-    <span class="pl-c">// See http://www.js-data.io/docs/dssave</span>
-    <span class="pl-k">return</span> User.save(<span class="pl-c1">1</span>);
-  })
-  .then(<span class="pl-k">function</span> (<span class="pl-smi">_user</span>) {
-    <span class="pl-c">// identity mapping at play</span>
-    user <span class="pl-k">===</span> _user; <span class="pl-c">// true</span>
-    user <span class="pl-k">===</span> User.get(_user.<span class="pl-c1">id</span>); <span class="pl-c">// true</span>
-
-    user; <span class="pl-c">// { id: 1, name: 'Johnny' }</span>
-
-    <span class="pl-c">// DELETE /user/1</span>
-    <span class="pl-c">// See http://www.js-data.io/docs/dsdestroy</span>
-    <span class="pl-k">return</span> User.destroy(<span class="pl-c1">1</span>);
-  })
-  .then(<span class="pl-k">function</span> () {
-    <span class="pl-c">// The user has also been removed from the in-memory store</span>
-    User.get(<span class="pl-c1">1</span>); <span class="pl-c">// undefined</span>
-  });</pre></div>
-
-<p>All your data are belong to you...</p>
-
-<h3>
-<a id="guides" class="anchor" href="#guides" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guides</h3>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of contents</h2>
 
 <ul>
-<li><a href="http://www.js-data.io/docs/home">Getting Started with js-data</a></li>
-<li><a href="http://www.js-data.io/docs/resources">Resources/Models</a></li>
-<li><a href="http://www.js-data.io/docs/working-with-the-data-store">Working with the Data Store</a></li>
-<li><a href="http://www.js-data.io/docs/working-with-adapters">Adapters</a></li>
-<li><a href="http://www.js-data.io/docs/model-lifecycle">Model Lifecycle</a></li>
-<li><a href="http://www.js-data.io/docs/custom-instance-behavior">Custom Instance Behavior</a></li>
-<li><a href="http://www.js-data.io/docs/computed-properties">Computed Properties</a></li>
-<li><a href="http://www.js-data.io/docs/relations">Relations</a></li>
-<li><a href="http://www.js-data.io/docs/schemata--validation">Schemata &amp; Validation</a></li>
-<li><a href="http://www.js-data.io/docs/jsdata-on-the-server">JSData on the server</a></li>
-<li><a href="http://www.js-data.io/docs/js-data-angular">Angular + JSData</a></li>
-<li><a href="http://www.js-data.io/docs/faq">FAQ</a></li>
+<li><a href="#js-data">js-data</a></li>
+<li><a href="#js-data-http">js-data-http</a></li>
 </ul>
 
-<p>See an issue with or have a suggestion for the documentation? You can suggest edits right on the documentation pages! (There's a link at the top right of each page.)</p>
-
-<h3>
-<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API Documentation</h3>
+<h2>
+<a id="js-data" class="anchor" href="#js-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>js-data</h2>
 
 <ul>
-<li><a href="http://www.js-data.io/docs/ds">DS</a></li>
-<li><a href="http://www.js-data.io/docs/js-data-schema">js-data-schema</a></li>
-<li><a href="http://www.js-data.io/docs/dsfirebaseadapter">DSFirebaseAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dshttpadapter">DSHttpAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dslocalforageadapter">DSLocalForageAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dslocalstorageadapter">DSLocalStorageAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dsmongodbadapter">DSMongoDBAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dsredisadapter">DSRedisAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dsrethinkdbadapter">DSRethinkDBAdapter</a></li>
-<li><a href="http://www.js-data.io/docs/dssqladapter">DSSqlAdapter</a></li>
+<li><a href="js-data/3.0.0-alpha.11/index.html">3.0.0-alpha.11</a></li>
+<li><a href="http://www.js-data.io/v2.8/docs/home">2.x</a></li>
 </ul>
 
-<h3>
-<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h3>
-
-<p><a href="https://github.com/js-data/js-data/blob/master/CHANGELOG.md">CHANGELOG.md</a></p>
-
-<h3>
-<a id="community" class="anchor" href="#community" aria-hidden="true"><span class="octicon octicon-link"></span></a>Community</h3>
+<h2>
+<a id="js-data-http" class="anchor" href="#js-data-http" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>js-data-http</h2>
 
 <ul>
-<li>
-<a href="https://groups.io/org/groupsio/jsdata">Mailing List</a> - Ask your questions!</li>
-<li>
-<a href="https://github.com/js-data/js-data/issues">Issues</a> - Found a bug? Feature request? Submit an issue!</li>
-<li>
-<a href="https://github.com/js-data/js-data">GitHub</a> - View the source code for JSData.</li>
-<li><a href="https://github.com/js-data/js-data/blob/master/CONTRIBUTING.md">Contributing Guide</a></li>
+<li><a href="js-data-http/3.0.0-alpha.3/index.html">3.0.0-alpha.3</a></li>
+<li><a href="http://www.js-data.io/v2.8/docs/home">2.x</a></li>
 </ul>
 
-<h3>
-<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h3>
-
-<p>First, support is handled via the <a href="https://groups.io/org/groupsio/jsdata">Mailing List</a>. Ask your questions there.</p>
-
-<p>When submitting issues on GitHub, please include as much detail as possible to make debugging quick and easy.</p>
-
-<ul>
-<li>good - Your versions of Angular, JSData, etc, relevant console logs/error, code examples that revealed the issue</li>
-<li>better - A <a href="http://plnkr.co/">plnkr</a>, <a href="http://jsfiddle.net/">fiddle</a>, or <a href="http://jsbin.com/?html,output">bin</a> that demonstrates the issue</li>
-<li>best - A Pull Request that fixes the issue, including test coverage for the issue and the fix</li>
-</ul>
-
-<p><a href="https://github.com/js-data/js-data/issues">Github Issues</a>.</p>
-
-<h4>
-<a id="pull-requests" class="anchor" href="#pull-requests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pull Requests</h4>
-
-<ol>
-<li>Contribute to the issue that is the reason you'll be developing in the first place</li>
-<li>Fork js-data</li>
-<li><code>git clone https://github.com/&lt;you&gt;/js-data.git</code></li>
-<li><code>cd js-data; npm install; bower install;</code></li>
-<li>
-<code>grunt go</code> (builds and starts a watch)</li>
-<li>(in another terminal) <code>grunt karma:dev</code> (runs the tests)</li>
-<li>Write your code, including relevant documentation and tests</li>
-<li>Submit a PR and we'll review</li>
-</ol>
-
-<h3>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
 
 <p>The MIT License (MIT)</p>
 
-<p>Copyright (c) 2014-2015 Jason Dobry</p>
+<p>Copyright (c) 2014-2016 Jason Dobry</p>
 
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -230,15 +100,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
-
-      <footer class="site-footer">
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
-    </section>
-
-  
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
-
