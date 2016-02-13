@@ -6,3 +6,4 @@ For Getting Started guides, visit __[http://js-data.io](http://www.js-data.io)__
 
 * [js-data](http://api.js-data.io/js-data)
 * [js-data-http](http://api.js-data.io/js-data-http)
+* [js-data-localstorage](http://api.js-data.io/js-data-localstorage)
