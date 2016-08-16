@@ -5,6 +5,7 @@ For guides and tutorials, visit __[http://js-data.io](http://www.js-data.io)__.
 # API Reference Docs
 
 * [js-data](http://api.js-data.io/js-data)
+* [js-data-documentdb](http://api.js-data.io/js-data-documentdb)
 * [js-data-firebase](http://api.js-data.io/js-data-firebase)
 * [js-data-http](http://api.js-data.io/js-data-http)
 * [js-data-levelup](http://api.js-data.io/js-data-levelup)
