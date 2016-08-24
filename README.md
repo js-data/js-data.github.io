@@ -5,7 +5,9 @@ For guides and tutorials, visit __[http://js-data.io](http://www.js-data.io)__.
 # API Reference Docs
 
 * [js-data](http://api.js-data.io/js-data)
+* [js-data-cloud-datastore](http://googlecloudplatform.github.io/js-data-cloud-datastore)
 * [js-data-documentdb](http://api.js-data.io/js-data-documentdb)
+* [js-data-express](http://api.js-data.io/js-data-express)
 * [js-data-firebase](http://api.js-data.io/js-data-firebase)
 * [js-data-http](http://api.js-data.io/js-data-http)
 * [js-data-levelup](http://api.js-data.io/js-data-levelup)
